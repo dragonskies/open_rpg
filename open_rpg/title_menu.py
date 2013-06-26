@@ -15,7 +15,7 @@ import pygame
 from pygame.locals import *
 import sys
 
-from pygame_interfaces import Font
+from pygame_interfaces import Font, Fade
 
 if not pygame.display.get_init():
     pygame.display.init()
@@ -68,14 +68,15 @@ class Menu:
             # Fade in
             image = pygame.image.load(background_image).convert()
             pygame.transform.smoothscale(image, size, surface)
-            alpha = 0.0
-            while alpha <= 100:
-                surface.set_alpha(alpha)
-                self.dest_surface.blit(surface, (0,0))
+            Fade(self.dest_surface, surface, 2)
+            #alpha = 0.0
+            #while alpha <= 100:
+            #    surface.set_alpha(alpha)
+            #    self.dest_surface.blit(surface, (0,0))
                 #self.draw()
-                pygame.display.update()
-                alpha += 2
-                pygame.time.wait(10)
+            #    pygame.display.update()
+            #    alpha += 2
+            #    pygame.time.wait(10)
             self.draw()
         else:
             self.dest_surface.fill(self.menu_background_color)
